@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style type="text/css">
+    body{
+      margin: 0;
+    }
+    .clickMe{
+      width: 50vw;
+      height: 50vw;
+      float: left;
+      line-height: 50vw;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      text-shadow: 3px 2px 2px black;
+    }
+    .clickMe:nth-child(1){
+      background-color: red;
+    }
+    .clickMe:nth-child(2){
+      background-color: blue;
+    }
+    .clickMe:nth-child(3){
+      background-color: green;
+    }
+    .clickMe:nth-child(4){
+      background-color: yellow;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script>
+    $(document).ready( initializeApp );
+
+    var timer = null;
+    var startTime = null;
+
+    function initializeApp(){
+      timer = setInterval(pickASquare, 500);
+      /*select all the .clickMe elements
+      and add a click handler to each that calls squareSelected*/
+    }
+
+    function pickASquare(){
+      var squares = $(".clickMe").text('');
+      var numberOfSquares = squares.length;
+      var randomSquareIndex = Math.random() * numberOfSquares;
+      var wholeRandomSquareIndex = Math.floor(randomSquareIndex);
+      $(squares[wholeRandomSquareIndex]).text('click this one!');
+      startTime = (new Date().getTime());
+    }
+
+    function squareSelected(){
+      /*check if the cell that was clicked on has "click this one!" text in it
+      determine how fast they clicked on it by comparing it ot the startTime var
+      report the time to the #display div*/
+    }
+  </script>
+</head>
+
+<body>
+  <br><br>
+  <div id="display">Click on a square</div>
+  <div class="container">
+    <div class="clickMe"></div>
+    <div class="clickMe"></div>
+    <div class="clickMe"></div>
+    <div class="clickMe"></div>
+  </div>
+
+</body>
+
+</html>

@@ -8,11 +8,13 @@ A repo containing a range of mini Javascript projects
 - phone system
 - list-transfer
 - timer
+- square catch
 
 ### Level 2
 - find-the-mole
 - deal-52
 - quiz-game
+- multiplication table
 
 ### Level 3
 - blackjack(OOP)
