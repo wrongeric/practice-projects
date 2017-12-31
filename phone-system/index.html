@@ -26,10 +26,72 @@
 </div>
 </body>
 	<script>
-		$("#phoneNumbers>button").on('click',handleNumberPress);
-		function handleNumberPress(){
-			var buttonPressed = $(this).text();
-			responsiveVoice.speak("you pressed "+buttonPressed);
+		$(document).ready(startFunction);
+
+        function speak(string) {
+            responsiveVoice.speak(string);
+        }
+
+        var pressedNumber;
+
+		function startFunction(){
+		    speak('Press 0 for Operator, Press 1 for Food Options, Press 2 for car rentals, Press 3 for grocery stores, Press 4 for medical options');
 		}
+
+		$("#phoneNumbers>button").on('click',handleNumberPress);
+
+		function speakCases(caseNumber) {
+            switch(parseInt(caseNumber)) {
+                case 0:
+                    speak("Speak with an operator ");
+                    break;
+                case 1:
+                    speak("Here are some fast food options, Press 1 for Burger King, Press 2 for In and Out, Press 3 for Taco Bell ");
+                    break;
+                case 2:
+                    speak("Here are some suggestions for car rentals.  Press 1 for Enterprise.  Press 2 for Hertz")
+                    break;
+                case 3:
+                    three();
+                    break;
+                case 4:
+                    four();
+                    break;
+                case 5: case 6: case 7: case 8: case 9:
+                	speak("You entered in an invalid number");
+                	pressedNumber = undefined;
+                	startFunction()
+                	break;
+                case 11:
+                    speak("Burger King is at X");
+                    break;
+				case 12:
+                    speak("In and out is way better than McDonald's");
+                    break;
+				case 13:
+				    speak("tacobell is best");
+				    break;
+				case 21:
+				    speak("Enterprise is at your service, to repeat this information press 1");
+				    break;
+
+				    break;
+				case 22:
+				    speak("Hertz is at your service, we are located at ....");
+					break;
+            }
+		}
+
+		function handleNumberPress() {
+            var buttonPressed = $(this).text();
+            speak("you pressed "+buttonPressed);
+            if (pressedNumber === undefined) {
+                pressedNumber = buttonPressed;
+			} else {
+                pressedNumber = pressedNumber + buttonPressed;
+            }
+			speakCases(pressedNumber);
+		}
+
 	</script>
 </html>
